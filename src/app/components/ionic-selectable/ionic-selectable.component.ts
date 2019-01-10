@@ -671,7 +671,25 @@ export class IonicSelectableComponent implements ControlValueAccessor, OnInit, O
   modalClass: string = undefined;
 
   /**
-   * Modal class
+   * Modal enter animation
+   *
+   * @default undefined
+   * @memberof IonicSelectableComponent
+   */
+  @Input()
+  modalEnterAnimation: string = undefined;
+  
+  /**
+   * Modal leave animation
+   *
+   * @default undefined
+   * @memberof IonicSelectableComponent
+   */
+  @Input()
+  modalLeaveAnimation: string = undefined;
+
+  /**
+   * Close button position
    *
    * @default 'start'
    * @memberof IonicSelectableComponent
@@ -1381,7 +1399,9 @@ export class IonicSelectableComponent implements ControlValueAccessor, OnInit, O
           selectComponent: self
         }, {
           enableBackdropDismiss: self._isBackdropCloseEnabled,
-          cssClass: self.modalClass
+          cssClass: self.modalClass,
+          enterAnimation: self.modalEnterAnimation,
+          leaveAnimation: self.modalLeaveAnimation
         });
       self._modal.present().then(() => {
         // Set focus after page has opened to avoid flickering of focus highlighting
